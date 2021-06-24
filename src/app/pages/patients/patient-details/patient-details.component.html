@@ -1,0 +1,83 @@
+<div>
+  <div *ngIf="currentPatient != null" class="edit-form">
+    <h4>User Details</h4>
+    <form>
+      <div class="form-group">
+        <label for="full-name">Full Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="full-name"
+          required
+          [(ngModel)]="currentPatient.fullName"
+          name="full_name"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input
+          class="form-control"
+          id="email"
+          type="email"
+          required
+          [(ngModel)]="currentPatient.email"
+          name="email"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="phone">Phone</label>
+        <input
+          class="form-control"
+          id="phone"
+          type="tel"
+          required
+          [(ngModel)]="currentPatient.phone"
+          name="phone"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="description">Address</label>
+        <textarea
+          class="form-control"
+          id="address"
+          required
+          [(ngModel)]="currentPatient.address"
+          name="address"
+        ></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="dob">Date of Birth</label>
+        <input
+          class="form-control"
+          id="dob"
+          type="date"
+          required
+          [(ngModel)]="currentPatient.dob"
+          name="dob"
+        />
+      </div>
+    </form>
+
+    <button class="badge badge-danger mr-2" (click)="deletePatient()">
+      Delete
+    </button>
+
+    <button
+      type="submit"
+      class="badge badge-success mb-2"
+      (click)="updatePatient()"
+    >
+      Update
+    </button>
+    <p>{{ message }}</p>
+  </div>
+
+  <div *ngIf="currentPatient == null">
+    <br />
+    <p>Cannot access this Patient details...</p>
+  </div>
+</div>

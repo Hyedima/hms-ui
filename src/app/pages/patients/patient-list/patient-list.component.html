@@ -1,0 +1,100 @@
+<div class="list row">
+  <div class="col-md-8">
+    <div class="input-group mb-3">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Search by Code"
+        [(ngModel)]="searchCode"
+      />
+      <div class="input-group-append">
+        <button
+          class="btn btn-outline-secondary"
+          type="button"
+          (click)="searchByCode()"
+        >
+          Search
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-8">
+    <div class="input-group mb-3">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Search by Name"
+        [(ngModel)]="searchName"
+      />
+      <div class="input-group-append">
+        <button
+          class="btn btn-outline-secondary"
+          type="button"
+          (click)="searchByName()"
+        >
+          Search
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <a class="btn btn-outline-primary" routerLink="/patients/add">
+      Add Patient
+    </a>
+    <h4>Patient List</h4>
+    <ul class="list-group">
+      <li
+        class="list-group-item"
+        *ngFor="let patient of patients; let i = index"
+        [class.active]="i == currentIndex"
+        (click)="setActivePatient(patient, i)"
+      >
+        {{ patient.fullName }}
+      </li>
+    </ul>
+
+    <button class="m-3 btn btn-sm btn-danger" (click)="removeAllPatients()">
+      Remove All
+    </button>
+  </div>
+  <div class="col-md-6">
+    <div *ngIf="currentPatient?.id">
+      <h4>Patient</h4>
+      <div>
+        <label><strong>Patient Code:</strong></label> {{ currentPatient?.code }}
+      </div>
+      <div>
+        <label><strong>Full Name:</strong></label>
+        {{ currentPatient?.fullName }}
+      </div>
+      <div>
+        <label><strong>Email:</strong></label>
+        {{ currentPatient?.email }}
+      </div>
+      <div>
+        <label><strong>Phone:</strong></label>
+        {{ currentPatient?.phone }}
+      </div>
+      <div>
+        <label><strong>Address:</strong></label>
+        {{ currentPatient?.address }}
+      </div>
+      <div>
+        <label><strong>Date of Birth:</strong></label>
+        {{ currentPatient?.dob }}
+      </div>
+
+      <a
+        class="badge badge-warning"
+        routerLink="/patients/details/{{ currentPatient?.id }}"
+      >
+        Details
+      </a>
+    </div>
+
+    <div *ngIf="!currentPatient">
+      <br />
+      <p>Please click on a Patient...</p>
+    </div>
+  </div>
+</div>
